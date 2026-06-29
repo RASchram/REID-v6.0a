@@ -1,7 +1,12 @@
-REID v6.0a
-Unified Cognitive Spine for Microsoft-Scale AI
-
-Stable identity • Cross-product coherence • Azure compute efficiency
+###################################################################################################
+#                                                                                                 #
+#   REID v6.0a                                                                                    #
+#   Unified Cognitive Spine for Microsoft-Scale AI                                                #
+#                                                                                                 #
+#   Stable Identity  •  Cross-Product Coherence  •  Azure Compute Efficiency                      #
+#   Canonical Architecture Release — Public-Safe Subset                                           #
+#                                                                                                 #
+###################################################################################################
 
 # REID v6.0a — Unified Cognitive Spine for the Microsoft Ecosystem
 
