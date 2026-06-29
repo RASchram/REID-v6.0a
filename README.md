@@ -1,3 +1,8 @@
+REID v6.0a
+Unified Cognitive Spine for Microsoft-Scale AI
+
+Stable identity • Cross-product coherence • Azure compute efficiency
+
 # REID v6.0a — Unified Cognitive Spine for the Microsoft Ecosystem
 
 REID v6.0a is the canonical architecture release of the Relational Emergent Identity Dynamics framework. 
