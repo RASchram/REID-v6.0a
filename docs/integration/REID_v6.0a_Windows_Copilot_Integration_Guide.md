@@ -1,10 +1,9 @@
- # REID v6.0a — Windows Copilot Integration Guide
-OS-Level Integration Blueprint for Microsoft Developers
+ # REID v6.0a — Windows Copilot Integration Guide (Full OS Edition)
+OS-Level Reasoning, Action Safety, and Device-Aware Integration for Microsoft Developers
 
 This guide explains how REID v6.0a integrates with Windows Copilot to provide stable identity, 
-device-aware reasoning, edge-side pre-compute, and reduced cloud inference load. It is designed for 
-Microsoft engineers working on Windows Copilot, Windows Shell, Settings, File System operations, 
-and device-context workflows.
+device-aware reasoning, safe OS-level actions, multi-model orchestration, drift control, and 
+cross-surface continuity across the Windows environment.
 
 
 ###################################################################################################
@@ -12,13 +11,16 @@ and device-context workflows.
 ###################################################################################################
 
 Windows Copilot requires:
-- Device-aware reasoning
-- OS-level context stabilization
-- Identity continuity across sessions
-- Reduced cloud inference load
-- Predictable multi-model orchestration
+- device-aware reasoning  
+- OS state awareness  
+- safe action execution  
+- identity continuity  
+- context continuity  
+- multi-step workflow stability  
+- reduced compute consumption  
 
-REID v6.0a provides these capabilities through its four-layer cognitive spine and orchestration backbone.
+REID v6.0a provides these capabilities through its cognitive spine, device context binding, 
+orchestration architecture, and synthesis engine.
 
 
 ###################################################################################################
@@ -26,176 +28,305 @@ REID v6.0a provides these capabilities through its four-layer cognitive spine an
 ###################################################################################################
 
 Windows Copilot  
-→ REID Edge Pre-Compute Substrate  
-→ REID Cognitive Layer  
+→ Identity Anchor  
+→ Device Context + OS Binding  
+→ Pre-Compute Substrate  
+→ Intent Classification  
+→ Goal Decomposition  
 → Orchestration Spine  
-→ Azure OpenAI / Phi / SLM / Vision / Speech  
-→ REID Synthesis  
-→ Windows Copilot Output
+→ Model Invocation  
+→ Synthesis  
+→ OS Action Execution  
+→ Output
 
 This pipeline ensures:
-- Stable identity
-- Device-aware reasoning
-- Lower compute cost
-- Consistent OS-level behavior
+- stable identity  
+- safe OS actions  
+- coherent reasoning  
+- lower compute cost  
+- predictable Windows behavior  
 
 
 ###################################################################################################
 # 3. REQUIRED WINDOWS BINDINGS
 ###################################################################################################
 
-Windows Copilot MUST provide:
+Windows MUST provide:
 
 1. Entra ID identity continuity  
-2. Device context  
-3. OS session metadata  
-4. Graph semantic grounding (when available)  
-5. REID pre-compute substrate access  
-6. REID orchestration spine routing  
-7. REID synthesis return path  
+2. Device identity  
+3. OS build metadata  
+4. Active window metadata  
+5. Running process metadata  
+6. System settings metadata  
+7. Environment metadata  
+8. Permission + policy metadata  
+9. REID pre-compute substrate access  
+10. REID orchestration spine routing  
+11. REID synthesis return path  
 
-These bindings allow REID to stabilize identity and reduce compute consumption.
+These bindings allow REID to stabilize identity and safely execute OS actions.
 
 
 ###################################################################################################
-# 4. DEVICE CONTEXT BINDING
+# 4. WINDOWS CONTEXT BINDING
 ###################################################################################################
 
-Minimal device context fields:
+Minimal Windows context fields:
 
-    device_id: [guid]
-    os_version: [string]
-    locale: [string]
-    timezone: [string]
-    hardware_profile: [optional]
-    session_id: [guid]
+    windows_context:
+        device_id: [guid]
+        hardware_id: [string]
+        os_build: [string]
+        session_id: [guid]
+        active_windows: [list]
+        running_processes: [list]
+        system_settings: [map]
+        environment: [map]
+        permissions: [list]
+        enterprise_policies: [list]
 
 REID uses these fields to:
-- Stabilize device context
-- Normalize OS-level meaning
-- Reduce repeated context reconstruction
+- maintain device-aware reasoning  
+- validate OS actions  
+- prevent unsafe operations  
+- reduce repeated context reconstruction  
 
 
 ###################################################################################################
-# 5. EDGE-SIDE PRE-COMPUTE SUBSTRATE
+# 5. OS ACTION SAFETY MODEL
 ###################################################################################################
 
-Windows Copilot MUST run REID’s pre-compute substrate *on the device* when possible.
+OS actions MUST follow REID’s safety model:
 
-Functions:
-- Meaning stabilization
-- Ambiguity filtering
-- Intent normalization
-- Goal pre-classification
+### Identity Safety
+- identity anchor must be valid  
+- session must be active  
 
-Outcome:
-- Reduced cloud inference load
-- Faster OS-level responses
-- Lower Azure GPU-hours
+### Context Safety
+- OS state must be consistent  
+- device capabilities must match action  
+
+### Permission Safety
+- user must have permission  
+- enterprise policies must allow action  
+
+### Drift Safety
+- drift score must be below threshold  
+
+If any safety rule fails:
+- action is blocked  
+- minimal re-inference is performed  
+- user receives a safe fallback  
 
 
 ###################################################################################################
-# 6. OS-LEVEL INTENT CLASSIFICATION
+# 6. SUPPORTED WINDOWS ACTION CATEGORIES
 ###################################################################################################
 
-Windows Copilot MUST classify OS-level intents through REID:
+Windows Copilot supports:
+
+- **window_management**  
+    resize, move, close, switch, snap
+
+- **file_management**  
+    open, move, copy, delete, rename
+
+- **system_settings**  
+    toggle, adjust, configure
+
+- **application_launch**  
+    start apps, open files, run commands
+
+- **application_control**  
+    close apps, switch apps, manage windows
+
+- **environment_query**  
+    check OS state, list processes, inspect settings
+
+- **device_capability_query**  
+    CPU/GPU/memory/storage checks
+
+- **workflow_execution**  
+    multi-step OS tasks (e.g., “clean up disk space”)
+
+
+###################################################################################################
+# 7. WINDOWS INTENT CLASSIFICATION
+###################################################################################################
 
 Examples:
-- “Open Settings”
-- “Change display brightness”
-- “Find a file”
-- “Connect to Wi-Fi”
-- “Summarize this document”
-- “Explain this error”
+
+- “Open Settings”  
+    → intent: execute_os_action
+
+- “Close this window”  
+    → intent: execute_os_action
+
+- “What’s using the most memory?”  
+    → intent: environment_query
+
+- “Launch Word”  
+    → intent: application_launch
+
+- “Clean up my computer”  
+    → intent: workflow_execution
 
 REID stabilizes intent before invoking any model.
 
 
 ###################################################################################################
-# 7. GOAL DECOMPOSITION FOR WINDOWS TASKS
+# 8. WINDOWS GOAL DECOMPOSITION
 ###################################################################################################
 
-REID decomposes OS-level tasks into structured goals:
+Examples:
 
-Example:
-    User Intent: “Clean up my storage”
-    Goals:
-        - Identify large files
-        - Identify unused apps
-        - Identify duplicate files
-        - Recommend cleanup actions
+### Intent: execute_os_action (“Open Settings”)
+Goals:
+- identify_action  
+- validate_permissions  
+- validate_os_state  
+- execute_action  
+- verify_result  
 
-This ensures predictable, consistent behavior.
+### Intent: workflow_execution (“Clean up my computer”)
+Goals:
+- identify_cleanup_targets  
+- check storage  
+- check running processes  
+- identify safe cleanup actions  
+- execute cleanup  
+- verify results  
 
 
 ###################################################################################################
-# 8. ORCHESTRATION SPINE ROUTING
+# 9. ORCHESTRATION SPINE ROUTING FOR WINDOWS
 ###################################################################################################
 
-Windows Copilot MUST route tasks through the spine:
+Windows tasks MUST route through the spine:
 
 - Event Bus  
 - Priority Router  
 - Governance Arbiter  
 - Cross-Layer Protocol Engine  
+- Execution Scheduler  
 
 The spine handles:
-- Multi-model routing
-- Parallel execution
-- Drift prevention
-- Coherence enforcement
+- multi-model routing  
+- parallel execution  
+- drift prevention  
+- OS action safety enforcement  
 
 
 ###################################################################################################
-# 9. MODEL INVOCATION THROUGH REID
+# 10. MODEL INVOCATION THROUGH REID
 ###################################################################################################
 
 Supported model classes:
 
-- GPT models
-- Phi models
-- SLMs
-- Vision models
-- Speech models
+- GPT  
+- Phi  
+- SLM  
+- Vision  
+- Speech  
 
-Windows Copilot MUST NOT call models directly.  
+Windows MUST NOT call models directly.  
 All model calls MUST go through REID’s orchestration spine.
 
 Outcome:
-- Lower compute cost
-- Higher throughput
-- Stable identity across tasks
+- lower compute cost  
+- higher throughput  
+- stable identity across OS tasks  
 
 
 ###################################################################################################
-# 10. SYNTHESIS RETURN PATH
+# 11. SYNTHESIS RETURN PATH FOR WINDOWS
 ###################################################################################################
 
-After model invocation, Windows Copilot MUST return output through REID’s synthesis layer.
+After model invocation, Windows MUST return output through REID’s synthesis layer.
 
 Synthesis ensures:
-- Coherence
-- Identity continuity
-- Drift correction
-- Cross-product consistency
-
-This is how Windows Copilot maintains stable behavior across sessions.
+- coherence  
+- identity continuity  
+- drift correction  
+- OS action safety  
+- workflow consistency  
 
 
 ###################################################################################################
-# 11. ERROR MODES (DEVELOPER EDITION)
+# 12. WINDOWS DRIFT DETECTION
 ###################################################################################################
 
-Windows Copilot MUST handle:
+Drift occurs when:
+
+- OS state contradicts itself  
+- device capabilities change  
+- permissions change  
+- enterprise policies change  
+- identity anchor breaks  
+
+Drift triggers:
+- re-binding  
+- minimal re-inference  
+- re-synthesis  
+- safe fallback  
+
+
+###################################################################################################
+# 13. POWER SAVINGS FOR WINDOWS WORKFLOWS
+###################################################################################################
+
+REID reduces compute consumption by:
+
+- eliminating repeated context reconstruction  
+- stabilizing identity across sessions  
+- reducing ambiguity before inference  
+- preventing drift that requires corrective inference  
+- enabling lightweight models for simple tasks  
+
+Outcome:
+- lower GPU-hours per user  
+- lower Azure cost  
+- faster Copilot responses  
+- higher global scalability  
+
+
+###################################################################################################
+# 14. QUICKSTART CHECKLIST
+###################################################################################################
+
+Windows Copilot is correctly integrated with REID when:
+
+[ ] Entra identity continuity is active  
+[ ] Device context is provided  
+[ ] OS state is provided  
+[ ] Permissions + policies are validated  
+[ ] Pre-compute substrate is active  
+[ ] Orchestration spine routes all tasks  
+[ ] Model calls go through REID  
+[ ] Synthesis returns stable output  
+[ ] Drift control is enabled  
+[ ] OS actions follow safety rules  
+
+
+###################################################################################################
+# 15. ERROR MODES (DEVELOPER EDITION)
+###################################################################################################
 
 AUTH_FAILURE  
     Entra token invalid.
 
 DEVICE_CONTEXT_LOSS  
-    Device context missing or corrupted.
+    Device metadata missing or corrupted.
 
-GRAPH_UNAVAILABLE  
-    Graph context missing.
+OS_STATE_INVALID  
+    OS state inconsistent.
+
+PERMISSION_DENIED  
+    User lacks permission.
+
+POLICY_VIOLATION  
+    Enterprise policy prohibits action.
 
 ORCHESTRATION_FAILURE  
     Spine routing error.
@@ -205,45 +336,10 @@ DRIFT_DETECTED
 
 
 ###################################################################################################
-# 12. POWER SAVINGS FOR WINDOWS COPILOT
-###################################################################################################
-
-REID reduces compute consumption by:
-
-- Running pre-compute on the device  
-- Eliminating redundant inference cycles  
-- Stabilizing identity across sessions  
-- Reducing ambiguity before inference  
-- Preventing drift that requires corrective inference  
-
-Outcome:
-- Lower Azure GPU-hours  
-- Lower cloud cost  
-- Faster OS-level responses  
-- Higher global scalability  
-
-
-###################################################################################################
-# 13. QUICKSTART CHECKLIST
-###################################################################################################
-
-Windows Copilot is correctly integrated with REID when:
-
-[ ] Device context is provided  
-[ ] Entra identity continuity is active  
-[ ] Graph grounding is provided when available  
-[ ] Edge pre-compute substrate is active  
-[ ] Orchestration spine routes all tasks  
-[ ] Model calls go through REID  
-[ ] Synthesis returns stable output  
-[ ] Drift correction is enabled  
-
-
-###################################################################################################
-# 14. SUMMARY
+# 16. SUMMARY
 ###################################################################################################
 
 This guide provides the minimal architectural and implementation guidance required for Microsoft 
 developers to integrate REID v6.0a into Windows Copilot.
 
-It represents the public-safe Windows integration boundary of REID v6.0a.
+It represents the public-safe OS integration boundary of REID v6.0a.
